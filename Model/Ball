@@ -1,0 +1,17 @@
+package Model;
+
+import java.awt.Graphics;
+import javax.swing.JComponent;
+
+/**
+ * Die Klasse malt den Ball.
+ *
+ * 
+ */
+public class Ball extends JComponent {
+
+	public void paint(Graphics g) {
+		g.drawOval((C.WINDOW_WIDTH / 2), C.WINDOW_HEIGHT - (C.WINDOW_HEIGHT / 4) + C.PADDLE_HEIGHT, C.BALL_RAD,
+				C.BALL_RAD);
+	}
+}
