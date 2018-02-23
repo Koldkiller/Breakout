@@ -1,2 +1,2 @@
 # Breakout
-Das Progammierung Projekt
+Das Programmierungs Projekt (Oli ist Gay)
