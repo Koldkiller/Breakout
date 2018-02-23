@@ -1,0 +1,15 @@
+package Model;
+
+public class C {
+	/**
+	 * Alle Constants die wir brauchen werden in einer Klasse.
+	 */
+	public final static int WINDOW_WIDTH = 400;
+	public final static int WINDOW_HEIGHT = 800;
+	public final static int PADDLE_WIDTH = 40;
+	public final static int PADDLE_HEIGHT = 10;
+	public final static int BALL_RAD = 20;
+	public final static int BRICK_WIDTH = 30;
+	public final static int BRICK_HEIGHT = 40;
+
+}
