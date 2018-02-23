@@ -8,19 +8,20 @@ import Model.C;
 import Model.Paddle;
 
 public class DrawGame {
+	public static JFrame window = new JFrame();
 
 	public DrawGame() {
-		JFrame window = new JFrame();
+
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setBounds(0, 0, C.WINDOW_WIDTH, C.WINDOW_HEIGHT);
 		window.getContentPane().add(new Paddle());
 		window.getContentPane().add(new Ball());
-		
-		//Brick Design Here:
+
+		// Brick Design Here:
 		for (int i = 0; i < C.N_BRICKS; i++) {
-			window.getContentPane().add(new Brick(i * C.BRICK_WIDTH, i* C.BRICK_HEIGHT));
+			window.getContentPane().add(new Brick(i * C.BRICK_WIDTH, i * C.BRICK_HEIGHT));
 		}
-		
+
 		window.setVisible(true);
 	}
 
