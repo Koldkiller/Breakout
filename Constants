@@ -1,5 +1,5 @@
 package Model;
-
+//Change to options and remove finals
 public class C {
 	/**
 	 * Alle Constants die wir brauchen werden in einer Klasse.
