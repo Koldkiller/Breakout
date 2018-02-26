@@ -11,6 +11,7 @@ Model:
 Control:
 - Collision
 - Movement (Keyboard input --> paddle bewegung)
+- Movement (Ball)
 - Levelauswahl(?)
 
 View:
