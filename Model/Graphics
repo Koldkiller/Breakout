@@ -1,0 +1,16 @@
+package Model;
+import acm.graphics.*;
+
+public class Graphics {
+
+	public GObject drawPaddle(int x, int y) {
+		return new GRect(x, y, C.PADDLE_WIDTH, C.PADDLE_HEIGHT);
+	}
+	public GObject drawBall(int x, int y) {
+		return new GOval(x, y, C.BALL_RAD, C.BALL_RAD);
+	}
+	public GObject drawBrick(int x, int y) {
+		return new GRect(x, y, C.BRICK_WIDTH, C.BRICK_HEIGHT);
+	}
+
+}
