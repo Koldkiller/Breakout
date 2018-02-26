@@ -1,28 +1,16 @@
 package View;
 
-import javax.swing.JFrame;
-
-import Model.Ball;
-import Model.Brick;
 import Model.C;
-import Model.Paddle;
+import Model.Graphics;
+import acm.program.GraphicsProgram;
 
-public class DrawGame {
-	public static JFrame window = new JFrame();
+public class DrawGame extends GraphicsProgram {
 
-	public DrawGame() {
-
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setBounds(0, 0, C.WINDOW_WIDTH, C.WINDOW_HEIGHT);
-		window.getContentPane().add(new Paddle());
-		window.getContentPane().add(new Ball());
-
-		// Brick Design Here:
+	public void drawGame() {
+		Graphics.drawPaddle((C.WINDOW_WIDTH / 2), C.WINDOW_HEIGHT - (C.WINDOW_HEIGHT / 4));
+		Graphics.drawBall((C.WINDOW_WIDTH / 2), C.WINDOW_HEIGHT - (C.WINDOW_HEIGHT / 4) + C.PADDLE_HEIGHT);
 		for (int i = 0; i < C.N_BRICKS; i++) {
-			window.getContentPane().add(new Brick(i * C.BRICK_WIDTH, i * C.BRICK_HEIGHT));
+			Graphics.drawBrick(i * C.BRICK_WIDTH, i * C.BRICK_HEIGHT);
 		}
-
-		window.setVisible(true);
 	}
-
 }
