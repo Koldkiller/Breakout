@@ -1,20 +1,31 @@
 package View;
 
-import acm.graphics.*;
-import acm.program.GraphicsProgram;
+import Model.C;
+import acm.io.IODialog;
+import acm.program.*;
 
 public class PlayGame extends GraphicsProgram {
 
-	private void init() {
+	public void init() {
 		DrawGame.drawGame();
 	}
 
 	public void run() {
-		// Hier soll die Main rein
+		setSize(C.WINDOW_WIDTH, C.WINDOW_HEIGHT);
+		IODialog levelChooser = new IODialog();
+		levelChooser.setAllowCancel(true);
+		// Mb make level class variable we will see
+		int level = levelChooser
+				.readInt("1 -- Level One\n" + "2 -- Level Two\n" + "3 -- Level Three\n" + "Enter Level here: ");
 	}
 
 	public void play() {
 		// Hier mit nem while loop das Spiel laufen lassen
+	}
+
+	private void gameOver() {
+		IODialog gameOver = new IODialog();
+		gameOver.print("You Lost!");
 	}
 
 }
