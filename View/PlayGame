@@ -12,6 +12,8 @@ import acm.util.RandomGenerator;
 
 public class PlayGame extends GraphicsProgram {
 	RandomGenerator rgen = new RandomGenerator();
+	public static GRect paddle = null;
+	public static GOval ball = null;
 
 	public void run() {
 		setSize(C.WINDOW_WIDTH, C.WINDOW_HEIGHT);
@@ -20,20 +22,32 @@ public class PlayGame extends GraphicsProgram {
 
 	public void drawtheGame() {
 		// Both still wrong size
-		GRect paddle = Graphics.drawPaddle((C.WINDOW_WIDTH / 2) - (C.PADDLE_WIDTH / 2),
+		paddle = Graphics.drawPaddle((C.WINDOW_WIDTH / 2) - (C.PADDLE_WIDTH / 2),
 				C.WINDOW_HEIGHT - (C.WINDOW_HEIGHT / 5));
 		add(paddle);
-		GOval ball = Graphics.drawBall((C.WINDOW_WIDTH / 2), C.WINDOW_HEIGHT - (C.WINDOW_HEIGHT / 5) - C.BALL_RAD);
+		ball = Graphics.drawBall((C.WINDOW_WIDTH / 2), C.WINDOW_HEIGHT - (C.WINDOW_HEIGHT / 5) - C.BALL_RAD);
 		ball.setColor(new Color(250, 0, 0));
 		add(ball);
-		int level = rgen.nextInt(0, 2);
+		int level = 0;// rgen.nextInt(0, 2);
 		switch (level) {
 		case (0):
-			// Map 1
-			for (int layer = 0; layer < 8; layer++) {
-				int y = (8 - layer - 1) * C.BRICK_HEIGHT;
-				int x = (layer * C.BRICK_WIDTH / 2);
+			for (int i = 0; i < 10; i++) {
+				for (int j = 0; j < 11; j++) {
+					if (j % 3 == 0) {
+					} else {
+
+						int y = 20 + j * C.BRICK_HEIGHT;
+						int x = i * C.BRICK_WIDTH;
+						GRect ziegel = Graphics.drawBrick(x, y);
+
+						ziegel.setFillColor(new Color(0, 255 / (j + 1), 0));
+						add(ziegel);
+
+					}
+				}
+
 			}
+			break;
 
 		case (1):
 			// Map 2
@@ -44,6 +58,7 @@ public class PlayGame extends GraphicsProgram {
 		default:
 			throw new IllegalArgumentException("Something went srsly wrong with the Randomgenerator");
 		}
+
 	}
 
 	public void play() {
