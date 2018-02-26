@@ -1,22 +1,24 @@
 package View;
 
 import Model.C;
+import Model.Graphics;
 import acm.io.IODialog;
 import acm.program.*;
 
 public class PlayGame extends GraphicsProgram {
 
-	public void init() {
-		DrawGame.drawGame();
+	public void run() {
+		drawtheGame();
 	}
 
-	public void run() {
-		setSize(C.WINDOW_WIDTH, C.WINDOW_HEIGHT);
-		IODialog levelChooser = new IODialog();
-		levelChooser.setAllowCancel(true);
-		// Mb make level class variable we will see
-		int level = levelChooser
-				.readInt("1 -- Level One\n" + "2 -- Level Two\n" + "3 -- Level Three\n" + "Enter Level here: ");
+	public void drawtheGame() {
+		System.out.println("Here");
+		// Both still wrong size
+		add(Graphics.drawPaddle((C.WINDOW_WIDTH / 2), C.WINDOW_HEIGHT - (C.WINDOW_HEIGHT / 4)));
+		add(Graphics.drawBall((C.WINDOW_WIDTH / 2), C.WINDOW_HEIGHT - (C.WINDOW_HEIGHT / 4) + C.PADDLE_HEIGHT));
+		// for (int i = 0; i < C.N_BRICKS; i++) {
+		// Graphics.drawBrick(i * C.BRICK_WIDTH, i * C.BRICK_HEIGHT);
+		// }
 	}
 
 	public void play() {
