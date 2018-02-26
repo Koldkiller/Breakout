@@ -1,0 +1,20 @@
+package View;
+
+import acm.graphics.*;
+import acm.program.GraphicsProgram;
+
+public class PlayGame extends GraphicsProgram {
+
+	private void init() {
+		DrawGame.drawGame();
+	}
+
+	public void run() {
+		// Hier soll die Main rein
+	}
+
+	public void play() {
+		// Hier mit nem while loop das Spiel laufen lassen
+	}
+
+}
