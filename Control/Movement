@@ -1,0 +1,18 @@
+package Control;
+
+import java.awt.event.KeyListener;
+
+public class Movement {
+
+	public void movementBall() {
+		// something like ball.move(vx, vy)
+		// if he collides with one of the side walls then vx = -vx
+		// if he collides with the top wall then vy = -vy
+		// also maybe call collision here and find out what the colliding object is and
+		// do what needs to be done
+	}
+
+	public void keyboardpressed(KeyListener left, KeyListener right) {
+		// move paddle left and right here blablabla
+	}
+}
