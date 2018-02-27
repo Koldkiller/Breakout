@@ -1,17 +1,17 @@
 package Control;
 
-import java.awt.event.MouseMotionListener;
+
 import java.util.Scanner;
 
-import org.w3c.dom.events.MouseEvent;
+
 
 import Model.C;
 import View.PlayGame;
 
-public class Movement extends Thread {
-	private int vPaddel = 0;
+public class Movement{
+	private static int vPaddel = 0;
 
-	public void movementBall() {
+	public static void movementBall() {
 		Collision e = new Collision();
 		double vx = 0;
 		double vy = 0;
@@ -46,11 +46,11 @@ public class Movement extends Thread {
 		// do what needs to be done
 	}
 
-	public void movementPaddel() {
+	public static void movementPaddel() {
 		PlayGame.paddle.move(vPaddel, 0);
 	}
 
-	public void keyboardpressed() {
+	public static void keyboardpressed() {
 		// move paddle left and right here blablabla
 		Scanner sc = new Scanner(System.in);
 
@@ -63,6 +63,7 @@ public class Movement extends Thread {
 		sc.close();
 	}
 }
+
 
 ################################################################################################################################
 
