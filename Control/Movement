@@ -1,21 +1,69 @@
 package Control;
 
-import java.awt.event.KeyListener;
+import java.awt.event.MouseMotionListener;
+import java.util.Scanner;
 
-public class Movement {
+import org.w3c.dom.events.MouseEvent;
+
+import Model.C;
+import View.PlayGame;
+
+public class Movement extends Thread {
+	private int vPaddel = 0;
 
 	public void movementBall() {
-		// something like ball.move(vx, vy)
+		Collision e = new Collision();
+		double vx = 0;
+		double vy = 0;
+		boolean firstmovement = true;
+
+		if (firstmovement != false) {
+			vx = Math.random();
+			vy = Math.random();
+			firstmovement = false;
+		}
+
+		while (true) {
+			PlayGame.ball.move(vx, vy);
+			if ((PlayGame.ball.getX() - vx <= 0 && vx < 0)
+					|| (PlayGame.ball.getX() + vx >= (C.WINDOW_WIDTH) - C.BALL_RAD * 2) && vx > 0) {
+				vx = vx * -1;
+			} // Collision wall
+
+			if (e.getCollider(PlayGame.ball) == PlayGame.paddle) {
+				vy = vy * -1;
+			} // Collision paddle
+
+			if (e.getCollider(PlayGame.ball) != null) {
+				vy = vy * -1;
+			} // Collision Brick
+		}
+
+		// ball.move(vx, vy)
 		// if he collides with one of the side walls then vx = -vx
 		// if he collides with the top wall then vy = -vy
 		// also maybe call collision here and find out what the colliding object is and
 		// do what needs to be done
 	}
 
-	public void keyboardpressed(KeyListener left, KeyListener right) {
+	public void movementPaddel() {
+		PlayGame.paddle.move(vPaddel, 0);
+	}
+
+	public void keyboardpressed() {
 		// move paddle left and right here blablabla
+		Scanner sc = new Scanner(System.in);
+
+		if ("A" == sc.next()) {
+			vPaddel--;
+		}
+		if ("D" == sc.next()) {
+			vPaddel++;
+		}
+		sc.close();
 	}
 }
+
 ################################################################################################################################
 
 package Control;
