@@ -1,15 +1,13 @@
 package Control;
 
-
+import java.awt.event.KeyEvent;
 import java.util.Scanner;
-
-
 
 import Model.C;
 import View.PlayGame;
 
-public class Movement{
-	private static int vPaddel = 0;
+public class Movement {
+	public static int vPaddel = 0;
 
 	public static void movementBall() {
 		Collision e = new Collision();
@@ -36,9 +34,9 @@ public class Movement{
 
 			if (e.getCollider(PlayGame.ball) != null) {
 				vy = vy * -1;
+				PlayGame.brick_counter--;
 			} // Collision Brick
 		}
-
 		// ball.move(vx, vy)
 		// if he collides with one of the side walls then vx = -vx
 		// if he collides with the top wall then vy = -vy
@@ -46,57 +44,4 @@ public class Movement{
 		// do what needs to be done
 	}
 
-	public static void movementPaddel() {
-		PlayGame.paddle.move(vPaddel, 0);
-	}
-
-	public static void keyboardpressed() {
-		// move paddle left and right here blablabla
-		Scanner sc = new Scanner(System.in);
-
-		if ("A" == sc.next()) {
-			vPaddel--;
-		}
-		if ("D" == sc.next()) {
-			vPaddel++;
-		}
-		sc.close();
-	}
-}
-
-
-################################################################################################################################
-
-package Control;
-
-import java.util.Scanner;
-import View.PlayGame;
-
-public class Movement extends Thread {
-	private int vPaddel = 0;  
-	public void movementBall() {
-		
-		// something like ball.move(vx, vy)
-		// if he collides with one of the side walls then vx = -vx
-		// if he collides with the top wall then vy = -vy
-		// also maybe call collision here and find out what the colliding object is and
-		// do what needs to be done
-	}
-
-	public void movementPaddel() {
-	PlayGame.paddle.setLocation(PlayGame.paddle.getX()-vPaddel, PlayGame.paddle.getY());
-	}
-	
-	public void keyboardpressed() {
-		// move paddle left and right here blablabla
-		Scanner sc = new Scanner(System.in);
-		
-		if ("A" == sc.next() ) {
-			vPaddel--;
-		}
-		if ("D" == sc.next() ) {
-			vPaddel++;
-		}
-		
-	}
 }
