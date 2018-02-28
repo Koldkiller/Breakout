@@ -1,7 +1,9 @@
 package View;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
+import Control.Movement;
 import Model.C;
 import Model.Graphics;
 import acm.graphics.GOval;
@@ -14,10 +16,33 @@ public class PlayGame extends GraphicsProgram {
 	RandomGenerator rgen = new RandomGenerator();
 	public static GRect paddle = null;
 	public static GOval ball = null;
+	public static int brick_counter = 0;
 
 	public void run() {
 		setSize(C.WINDOW_WIDTH, C.WINDOW_HEIGHT);
 		drawtheGame();
+		addKeyListeners();
+
+	}
+
+	public void keyTyped(KeyEvent e) {
+		// move paddle left and right here blablabla
+
+		if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A') {
+			if (!(paddle.getX() <= 0 || paddle.getX() >= (C.WINDOW_WIDTH - C.PADDLE_WIDTH))) {
+
+				paddle.move(-5, 0);
+
+			}
+		}
+
+		if (e.getKeyChar() == 'd' || e.getKeyChar() == 'D') {
+			if (!(paddle.getX() < 0 || paddle.getX() > (C.WINDOW_WIDTH - C.PADDLE_WIDTH))) {
+
+				paddle.move(5, 0);
+			}
+		}
+
 	}
 
 	public void drawtheGame() {
@@ -31,6 +56,7 @@ public class PlayGame extends GraphicsProgram {
 		int level = 0;// rgen.nextInt(0, 2);
 		switch (level) {
 		case (0):
+			// First Level
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 11; j++) {
 					if (j % 3 == 0) {
@@ -42,6 +68,7 @@ public class PlayGame extends GraphicsProgram {
 
 						ziegel.setFillColor(new Color(0, 255 / (j + 1), 0));
 						add(ziegel);
+						brick_counter++;
 
 					}
 				}
@@ -51,6 +78,46 @@ public class PlayGame extends GraphicsProgram {
 
 		case (1):
 			// Map 2
+			// Looks ok, needs Color though
+			int j = 0;
+			for (int i = 0; i < 5; i++) {
+
+				int x = C.BRICK_WIDTH * (i + 2);
+				int y = C.BRICK_HEIGHT * j;
+				int x1 = C.BRICK_WIDTH * (6 - i);
+				GRect ziegel1 = Graphics.drawBrick(x, y);
+				GRect ziegel11 = Graphics.drawBrick(x1, y);
+				++j;
+				y = C.BRICK_HEIGHT * j;
+				GRect ziegel2 = Graphics.drawBrick(x, y);
+				GRect ziegel21 = Graphics.drawBrick(x1, y);
+				add(ziegel1);
+				add(ziegel2);
+				add(ziegel11);
+				add(ziegel21);
+				brick_counter = brick_counter + 4;
+				j++;
+			}
+			int k = 10;
+			for (int l = 0; l < 5; l++) {
+				int x = C.BRICK_WIDTH * (l + 2);
+				int y = C.BRICK_HEIGHT * k;
+				int x1 = C.BRICK_WIDTH * (6 - l);
+				GRect ziegel4 = Graphics.drawBrick(x, y);
+				GRect ziegel41 = Graphics.drawBrick(x1, y);
+				++k;
+				y = C.BRICK_HEIGHT * k;
+				GRect ziegel5 = Graphics.drawBrick(x, y);
+				GRect ziegel51 = Graphics.drawBrick(x1, y);
+				add(ziegel4);
+				add(ziegel41);
+				add(ziegel5);
+				add(ziegel51);
+				brick_counter = brick_counter + 4;
+				k++;
+
+			}
+			break;
 
 		case (2):
 			// Map 3
@@ -62,7 +129,16 @@ public class PlayGame extends GraphicsProgram {
 	}
 
 	public void play() {
-		// Hier mit nem while loop das Spiel laufen lassen
+		waitForClick();
+		while (true) {
+			Movement.movementBall();
+			if (ball.getY() >= C.WINDOW_HEIGHT) {
+				break;
+			}
+			if (brick_counter == 0) {
+				break;
+			}
+		}
 	}
 
 	private void gameOver() {
@@ -71,6 +147,7 @@ public class PlayGame extends GraphicsProgram {
 	}
 
 }
+
 ########################################################################################################################################
 package View;
 
