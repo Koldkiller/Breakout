@@ -1,10 +1,8 @@
 package Control;
 
 import Model.C;
-import acm.graphics.*;
-import acm.program.GraphicsProgram;
 
-public class Collision extends GraphicsProgram {
+public class Collision implements Runnable {
 	// might need a constructor here, to call the function or we do like new
 	// Collision = e; e.getCollider()
 
