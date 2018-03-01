@@ -1,7 +1,9 @@
 package View;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
+import Control.Collision;
 import Control.Movement;
 import Model.C;
 import Model.Graphics;
@@ -17,12 +19,31 @@ public class PlayGame extends GraphicsProgram {
 	public static GOval ball = null;
 	public static int brick_counter = 0;
 	public Thread Move = new Thread(new Movement());
+	public Thread askCollision = new Thread(new Collision());
 
 	public void run() {
 		setSize(C.WINDOW_WIDTH, C.WINDOW_HEIGHT);
 		drawtheGame();
 		addKeyListeners();
 		play();
+
+	}
+
+	public void keyTyped(KeyEvent e) {
+		// move paddle left and right here blablabla
+
+		if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A') {
+			if (!(PlayGame.paddle.getX() <= 0)) {
+				Movement.paddleMove(-5);
+
+			}
+		}
+
+		if (e.getKeyChar() == 'd' || e.getKeyChar() == 'D') {
+			if (!(PlayGame.paddle.getX() > (C.WINDOW_WIDTH - C.PADDLE_WIDTH))) {
+				Movement.paddleMove(5);
+			}
+		}
 
 	}
 
